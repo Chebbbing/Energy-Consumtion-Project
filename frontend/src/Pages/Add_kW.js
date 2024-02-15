@@ -5,6 +5,9 @@ import { Button, Table, InputNumber, Flex } from 'antd';
 import { useParams } from 'react-router-dom';
 import logoImage from '../Assets/Logo.png'; //logo image
 
+//Changes made
+
+
 Modal.setAppElement('#root');
 
 const Add_kW = () => {
