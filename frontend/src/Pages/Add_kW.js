@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { Button, Table, InputNumber, Flex } from 'antd';
 import { useParams } from 'react-router-dom';
 import logoImage from '../Assets/Logo.png'; //logo image
+import { Link } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
@@ -209,7 +210,7 @@ const columnsReportData = [
 
   return (
     <div id="root">
-      <h1>Add Final Values{periode}</h1>
+      <h1>Add Final Values {periode} </h1>
       <Table dataSource={ECResults} columns={columnsECResults}/>
       <Modal
         isOpen={activeModal !== false}
@@ -228,6 +229,12 @@ const columnsReportData = [
       <Flex justify='flex-end'>
         <Button type='primary' onClick={commitToDatabase}>Commit changes to database</Button>
       </Flex>
+
+      <div style={{position: 'fixed', bottom: 0, left: 0, margin: 10}}>
+        <Link to={`/`}>
+          <Button type='primary'>back</Button>
+        </Link>
+      </div>
 
       <div style={{position: 'fixed', bottom:10, right: 10}}>
         <img src={logoImage} style={{ width: 175, height: 'auto' }} />

@@ -18,19 +18,32 @@ function MyComponent() {
   const { Dragger } = Upload; //This is handling the upload from the drag and drop upload
   const props = {
     name: 'file',
-    multiple: true,
+    multiple: false,
     action: 'http://localhost:5000/upload',
+    beforeUpload: (file, fileList) => {
+      // Prevent upload if a file is already uploaded
+      if (uploadedFile) {
+        message.error('A file is already uploaded. Please remove the existing file before uploading another.');
+        return Upload.LIST_IGNORE; // This will ignore the file upload attempt
+      }
+      return true; // Allow upload if no file is uploaded yet
+    },
     onChange(info) {
       const { status } = info.file;
       if (status !== 'uploading') {
         console.log(info.file, info.fileList);
-        setUploadedFile(info.file.name)
       }
       if (status === 'done') {
         message.success(`${info.file.name} file uploaded successfully.`);
+        setUploadedFile(info.file.name); // Update state to reflect the uploaded file
       } else if (status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
       }
+    },
+    onRemove: (file) => {
+      // Update state to reflect the file removal
+      setUploadedFile(null);
+      message.info(`${file.name} file removed.`);
     },
     onDrop(e) {
       console.log('Dropped files', e.dataTransfer.files);
