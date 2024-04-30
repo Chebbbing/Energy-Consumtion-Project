@@ -1,3 +1,6 @@
+//Current home screen and here you can upload a file and choose the format and periode you want to upload the file to.
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; // Import Link

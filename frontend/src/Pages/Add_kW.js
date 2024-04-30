@@ -19,7 +19,7 @@ const Add_kW = () => {
   const [kWPerM2Values, setkWPerM2Values] = useState({});
   const { periode } = useParams();
   const [sucsess, setSuccess] = useState(null);
-
+  
   const columnsECResults = [
     {
       title: 'Asset ID',
